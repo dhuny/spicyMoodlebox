@@ -1,0 +1,11 @@
+MoodleBox image version {{ moodlebox_version }}, {{ moodlebox_release_date }}
+{% if moodlebox_build_type == 'development' %}
+Build time: {{ lookup("pipe", "date +%Y-%m-%dT%H:%M:%S%z") }}
+{% endif %}
+
+MoodleBox is made by Nicolas Martignoni, nicolas@martignoni.net
+Generated using https://github.com/moodlebox/moodlebox
+
+Spicy Moodlebox is a port of Martignoni's work by Dhuny Riyad, riyad@dhuny.org
+Spicy Moodlebox runs MoodleBox on a 64-bit Version of Ubuntu-ARM.
+Generated using https://github.com/dhuny/
