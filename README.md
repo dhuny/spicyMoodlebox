@@ -35,23 +35,23 @@ To build a Spicy MoodleBox from scratch with this script, you need a Raspberry P
 1. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew tap esolitos/ipa; brew install sshpass`.
 1. [Clone this repository][git] to your local drive. A quick way is:
 	
-	sudo apt install sshpass ansible -y
+		sudo apt install sshpass ansible -y
 	
 1. A server restart may be required for apt update & upgrade to remove locks on tmp files. Perform 
 	
-	sudo apt update && sudo apt upgrade -y
+		sudo apt update && sudo apt upgrade -y
 	
 1. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
 1. A quick way  for above is: 
 
-	ssh-keygen -t rsa
+		ssh-keygen -t rsa
 
 	with blanks as defaults. 
 	
-	sudo cp /home/ubuntu/.ssh/id_rsa.pub /home/ubuntu/spicyMoodlebox/keys/
+		sudo cp /home/ubuntu/.ssh/id_rsa.pub /home/ubuntu/spicyMoodlebox/keys/
 	
 1. Get the IP address of your Raspberry Pi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.
-1. Create a config.yml with `cp default.config.yml config.yml`.
+1. Create a config.yml with 		`cp default.config.yml config.yml`.
 1. Run   `ansible-playbook ubuntu.yml`   from the repository folder to prepare the OS.
 1. Wait 1 -2 mins, playbook will change username from ubuntu to moodlebox, script will exit with failure.
 1. Playbook will stop after username change, with an error similar to `Unable to create local directories(/home/ubuntu/.ansible/cp’`...
