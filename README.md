@@ -4,7 +4,7 @@
 
 Spicy Moodlebox is a port of Nicolas Martignoni's MoodleBox to Ubuntu ARM-64 Architecture.Moodlebox is a Moodle server and Wi-Fi router on Raspberry Pi. 
 
-All credits goes to Nicolas Martignoni for the original Moodlebox. This port is keeping a different identity from the Original Moodlebox only for performance comparison purposes only. This port has been done by Dhuny Riyad
+All credits goes to Nicolas Martignoni for the original Moodlebox. This port is keeping a different identity from the Original Moodlebox only for performance comparison purposes. This port has been done by Dhuny Riyad
 
 ## The MoodleBox Documentation
 
