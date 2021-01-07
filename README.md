@@ -72,7 +72,7 @@ Any variable can be overridden in `config.yml`; see the file `default.config.yml
 
 ## Availability
 
-The Moodlebox code is available at [https://github.com/moodlebox/spicymoodlebox][git].
+The Moodlebox code is available at [https://github.com/moodlebox/moodlebox][git].
 The Spicy Moodlebox code is available at [https://github.com/dhuny/spicymoodlebox][git].
 
 ### Release notes
