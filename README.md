@@ -82,12 +82,12 @@ Any variable can be overridden in `config.yml`; see the file `default.config.yml
 
 ## Availability
 
-The Moodlebox code is available on (Moodlebox git)[https://github.com/moodlebox/moodlebox].
-The Spicy Moodlebox code is available on (SpicyMoodlebox git)[https://github.com/dhuny/spicymoodlebox].
+The Moodlebox code is available on [Moodlebox git](https://github.com/moodlebox/moodlebox).
+The Spicy Moodlebox code is available on [SpicyMoodlebox git](https://github.com/dhuny/spicymoodlebox).
 
 ### Release notes, Thanks & License
 
-This work is simply a port of the original work by Nicolas Martignoni, please visit (Moodlebox git])[https://github.com/moodlebox/moodlebox] for the Original Release Notes, Thanks and License. 
+This work is simply a port of the original work by Nicolas Martignoni, please visit [Moodlebox git](https://github.com/moodlebox/moodlebox) for the Original Release Notes, Thanks and License. 
 
 This contribution is from [R.Dhuny](riyad@dhuny.org)
 
