@@ -2,47 +2,57 @@
 
 
 
-Spicy Moodlebox is a port of Nicolas Martignoni's MoodleBox to Ubuntu ARM-64 Architecture.Moodlebox is a Moodle server and Wi-Fi router on Raspberry Pi. 
+Spicy Moodlebox is a port of Martignoni's MoodleBox to Ubuntu ARM-64 Architecture. Moodlebox is a Moodle server and Wi-Fi router on a Raspberry Pi. 
 
-All credits goes to Nicolas Martignoni for the original Moodlebox. This port is keeping a different identity from the Original Moodlebox only for performance comparison purposes. This port has been done by Dhuny Riyad
+All credits goes to Nicolas Martignoni for the original Moodlebox. This Spicy port was built and labelled  by Dhuny Riyad  as part of a research project only for performance comparison purposes. 
+If you have reached here by accident, then you are surely searching to visit [Moodlebox](https://moodlebox.net) as this git is not regularly maintained.
 
-## The MoodleBox Documentation
+As part of a  vision  to help education in remote areas, this work tries to upgrade the hardware and software environment of a Pi to compare the performance of Moodle on same.
+If this can be helpful to anybody, the comparison results are available on [YouTube](https://www.youtube.com/watch?v=xMDy_Yv33C8).  
 
-Visit the [MoodleBox web site][website] for more information about the MoodleBox features or any question about the usage of a MoodleBox.
+Also available, on Amazon is a book titled [Portable & Home hosted Learning Management Systems](https://www.amazon.com/Portable-hosted-Learning-Management-Systems/dp/B091H18XFV) which is linked to the performance comparison work. The book is still in its infancy but aims to disseminate the knowledge required to make portable Moodle LMS more common and accessible.
 
-If you just want to use the original Raspbian based version of MoodleBox, a [prepared disk image][download] of the latest released version is [available for downloading][download] and using out of the box on your Raspberry Pi 3A, 3B, 3B+ or 4B. Follow the instructions on the [MoodleBox web site][website].
+Contributors and reviewers for all the contents are most welcomed. A polite mail to the [author](mailto:riyad@dhuny.org) would be highly appreciated.
+
+
+## The Spicy MoodleBox Documentation
+
+
 If you want a ubuntu 64-bit version of Moodlebox, follow the instructions below to install one.
 
-### Asking Support Questions
 
-The original Moodlebox has an active [discussion forum][forum] where users and developers can ask questions. Please don't use the GitHub issue tracker to ask questions.
-
-## Building the MoodleBox disk image from scratch
-
-> If you just want to use a MoodleBox, __you don't need__ to build the MoodleBox disk image yourself. Just [download the MoodleBox image][download] and follow the instructions on the [MoodleBox web site][website]. If you want a spicy Moodlebox then follow the instructions below.
+## Building the Spicy MoodleBox disk image from scratch
 
 To build a Spicy MoodleBox from scratch with this script, you need a Raspberry Pi 3B, 3B+ or 4B.
 
-1. Clone [Ubuntu ARM-64](https://ubuntu.com/download/raspberry-pi) on your microSD card.
-1. Insert the microSD card into your Raspberry Pi.
-1. Connect your Raspberry Pi to your Ethernet network and boot it.
-1. Login with username `ubuntu` password `ubuntu`. Set new password to `Moodlebox4$`.
-1. Create a `ssh.txt` file on the `boot` partition, e.g. using 
+1. Clone [Ubuntu ARM-64](https://ubuntu.com/download/raspberry-pi) on your microSD card. Last known working version was Ubuntu-20.04.2
+2. Static Network addresses and Wifi credentials can be preconfigured in network-config present in SD card (Optional).
+3. Insert the microSD card into your Raspberry Pi.
+4. Connect your Raspberry Pi to your Ethernet network and boot it.
+5. Login with username `ubuntu` password `ubuntu`. Set new password to `Moodlebox4$`.
+6. Type the commands below to update and upgrade the Linux
+
+		sudo apt update && sudo apt upgrade -y
+		
+8. Ubuntu will take a few minutes to upgrade as it may be running some updates already. 
+9. Create a `ssh.txt` file on the `boot` partition, e.g. using 
         
 		sudo touch /boot/ssh.txt
 		
-1. [Install Ansible](https://docs.ansible.com/intro_installation.html) on your computer.
-1. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew tap esolitos/ipa; brew install sshpass`.
-1. [Clone this repository][git] to your local drive. A quick way is:
+7. [Install Ansible](https://docs.ansible.com/intro_installation.html) on your computer.
+8. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew tap esolitos/ipa; brew install sshpass`.
+
+			sudo apt install sshpass ansible -y
+
+10. [Clone this repository](https://github.com/dhuny/spicyMoodlebox.git) to your local drive. A quick way is:
 	
-		sudo apt install sshpass ansible -y
+	git clone https://github.com/dhuny/spicyMoodlebox.git
 	
-1. A server restart may be required for apt update & upgrade to remove locks on tmp files. Perform 
-	
-		sudo apt update && sudo apt upgrade -y
-	
-1. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
-1. A quick way  for above is: 
+11. Create a `keys` directory in the repository folder and copy your public key into it, under the name `id_rsa.pub`.
+
+		mkdir /home/ubuntu/spicyMoodlebox/keys/
+
+13. A quick way to create public keys is: 
 
 		ssh-keygen -t rsa
 
@@ -50,8 +60,8 @@ To build a Spicy MoodleBox from scratch with this script, you need a Raspberry P
 	
 		sudo cp /home/ubuntu/.ssh/id_rsa.pub /home/ubuntu/spicyMoodlebox/keys/
 	
-1. Get the IP address of your Raspberry Pi and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're on your own.
-1. Create a config.yml with 		`cp default.config.yml config.yml`.
+1. Get the IP address of your Raspberry Pi `ifconfig` or `ip a` and change it in the `hosts.yml` file. Do not change anything else, unless you know what you're doing. You're still on your own.
+1. Create a config.yml if required with 		`cp default.config.yml config.yml`.
 1. Run   `ansible-playbook ubuntu.yml`   from the repository folder to prepare the OS.
 1. Wait 1 -2 mins, playbook will change username from ubuntu to moodlebox, script will exit with failure.
 1. Playbook will stop after username change, with an error similar to `Unable to create local directories(/home/ubuntu/.ansible/cp’`...
@@ -75,36 +85,13 @@ Any variable can be overridden in `config.yml`; see the file `default.config.yml
 The Moodlebox code is available at [https://github.com/moodlebox/moodlebox][git].
 The Spicy Moodlebox code is available at [https://github.com/dhuny/spicymoodlebox][git].
 
-### Release notes
+### Release notes, Thanks & License
 
-See Original Moodlebox [Release notes](https://github.com/moodlebox/moodlebox/blob/master/CHANGELOG.md).
+This work is simply a port of the original work by Nicolas Martignoni, please visit [Moodlebox git]( https://github.com/moodlebox/moodlebox) for the Original Release Notes, Thanks and License. 
 
-
-## Thanks
-
-The original Moodlebox thanks list
-
-- To Daniel Méthot, for the [idea of a MoodleBox](https://moodle.org/mod/forum/discuss.php?d=278493)
-- To Christian Westphal, for the [first POC](https://moodle.org/mod/forum/discuss.php?d=331170) of a MoodleBox
-- To the [Raspberry Pi Foundation](https://www.raspberrypi.org/), for a splendid small computer
-- To [Martin Dougiamas](https://en.wikipedia.org/wiki/Martin_Dougiamas), for giving us Moodle, and to the [Moodle community](https://moodle.org/)
-
-## License
-
-The original Moodlebox copyright info is as follow: 
-
-Copyright © 2016 onwards, Nicolas Martignoni nicolas@martignoni.net.
-
-All contributions to this repository are licensed under AGPLv3 or any later version.
-
-MoodleBox doesn't require a CLA (Contributor License Agreement). The copyright belongs to all the individual contributors. Therefore we recommend that every contributor adds following line to the header of a file, if they
-changed it substantially:
+This contribution is from [R.Dhuny](riyad@dhuny.org)
 
 ```
 @copyright Copyright © <year>, <your name> (<your email address>)
 ```
 
-  [website]: https://moodlebox.net
-  [download]: https://moodlebox.net/download
-  [forum]: https://discuss.moodlebox.net/
-  [git]: https://github.com/moodlebox/moodlebox
