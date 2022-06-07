@@ -39,7 +39,7 @@ To build a Spicy MoodleBox from scratch with this script, you need a Raspberry P
         
 		sudo touch /boot/ssh.txt
 		
-7. [Install Ansible](https://docs.ansible.com/intro_installation.html) on your computer.
+7. [Install Ansible]([https://docs.ansible.com/intro_installation.html](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-ubuntu)) on your computer.
 8. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew tap esolitos/ipa; brew install sshpass`.
 
 			sudo apt install sshpass ansible -y
