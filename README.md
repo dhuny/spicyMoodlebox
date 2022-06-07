@@ -43,6 +43,7 @@ To build a Spicy MoodleBox from scratch with this script, you need a Raspberry P
 8. [Install `sshpass`](https://gist.github.com/arunoda/7790979) to enable passing SSH password to the Raspberry Pi. On macOS, use e.g. `brew tap esolitos/ipa; brew install sshpass`.
 
 			sudo apt install sshpass ansible -y
+			sudo apt install --no-install-recommends python3-netaddr
 
 10. [Clone this repository](https://github.com/dhuny/spicyMoodlebox.git) to your local drive. A quick way is:
 	
